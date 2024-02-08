@@ -13,7 +13,11 @@ config_version=5
 config/name="Joonie"
 run/main_scene="res://world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://game/icon.svg"
+config/icon="res://game/player/icon.svg"
+
+[autoload]
+
+Globals="*res://globals/globals.tscn"
 
 [display]
 
@@ -59,8 +63,7 @@ pointing/emulate_touch_from_mouse=true
 
 2d_physics/layer_1="TERRAIN"
 2d_physics/layer_2="PLAYER"
-2d_physics/layer_3="ENEMY"
-2d_physics/layer_4="DETECTION"
+2d_physics/layer_3="COIN"
 
 [rendering]
 

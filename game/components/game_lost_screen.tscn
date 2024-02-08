@@ -36,6 +36,11 @@ size_flags_horizontal = 4
 text = "GAME OVER
 "
 
+[node name="FinalScoreText" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SCORE: "
+
 [node name="RestartButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Restart"
