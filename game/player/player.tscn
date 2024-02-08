@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwvgac0khqhpa"]
+
+[ext_resource type="Script" path="res://game/player/player.gd" id="1_kruwu"]
+[ext_resource type="Texture2D" uid="uid://ct7uossm23il1" path="res://game/player/icon.svg" id="2_rwa0x"]
+[ext_resource type="PackedScene" uid="uid://cly4vfq65mhqe" path="res://game/components/gravity.tscn" id="3_ve7wh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3j1p"]
+size = Vector2(24, 24)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_kruwu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1875, 0.1875)
+texture = ExtResource("2_rwa0x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_b3j1p")
+
+[node name="Gravity" parent="." node_paths=PackedStringArray("body") instance=ExtResource("3_ve7wh")]
+body = NodePath("..")

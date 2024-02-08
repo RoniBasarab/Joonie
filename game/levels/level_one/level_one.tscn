@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://b062hbga3by2f"]
+
+[ext_resource type="PackedScene" uid="uid://cytyqin4yfla1" path="res://game/levels/level_one/first_platform.tscn" id="1_3bpkv"]
+[ext_resource type="Script" path="res://game/levels/level_one/level_one.gd" id="1_aik20"]
+[ext_resource type="PackedScene" uid="uid://lcagwnm4x1bk" path="res://game/levels/tower_generator.tscn" id="2_r6eh3"]
+[ext_resource type="PackedScene" uid="uid://d0i0n78ue58fy" path="res://game/components/camera.tscn" id="4_x3ydd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dd6wr"]
+radius = 8.0
+height = 1920.0
+
+[node name="LevelOne" type="Node2D"]
+script = ExtResource("1_aik20")
+
+[node name="Camera2D" parent="." instance=ExtResource("4_x3ydd")]
+
+[node name="FirstPlatform" parent="." instance=ExtResource("1_3bpkv")]
+
+[node name="Coins" type="Node2D" parent="." groups=["coins"]]
+
+[node name="StartLevelArea" type="Area2D" parent="."]
+position = Vector2(240, 696)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartLevelArea"]
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+shape = SubResource("CapsuleShape2D_dd6wr")
+
+[node name="PlayerSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(160, 768)
+
+[node name="LeftTowerWall" type="Marker2D" parent="."]
+
+[node name="RightTowerWall" type="Marker2D" parent="."]
+position = Vector2(480, 0)
+
+[node name="PlatformsSpawnPoint" type="Marker2D" parent="."]
+
+[node name="TowerGenerator" parent="." node_paths=PackedStringArray("left_tower_wall_point", "right_tower_wall_point", "platforms_spawn_point", "tilemap") instance=ExtResource("2_r6eh3")]
+left_tower_wall_point = NodePath("../LeftTowerWall")
+right_tower_wall_point = NodePath("../RightTowerWall")
+platforms_spawn_point = NodePath("../PlatformsSpawnPoint")
+tilemap = NodePath("../FirstPlatform")
+
+[connection signal="body_entered" from="Camera2D/LevelLostArea" to="." method="_on_level_lost_area_body_entered"]
+[connection signal="body_entered" from="StartLevelArea" to="Camera2D" method="_on_start_level_area_body_entered"]
+[connection signal="timeout" from="TowerGenerator/GeneratorTimer" to="TowerGenerator" method="_on_generator_timer_timeout"]
+
+[editable path="Camera2D"]
+[editable path="TowerGenerator"]

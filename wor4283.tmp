@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://cb2ef4rlhr0w1"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_66ui6"]
+[ext_resource type="PackedScene" uid="uid://568oyf6bhqsy" path="res://globals/globals.tscn" id="2_kr2hi"]
+[ext_resource type="PackedScene" uid="uid://d1qyrprq8840k" path="res://game/player/player_ui.tscn" id="3_6smkc"]
+[ext_resource type="PackedScene" uid="uid://d0i0n78ue58fy" path="res://game/components/camera.tscn" id="4_r3kam"]
+[ext_resource type="PackedScene" uid="uid://b062hbga3by2f" path="res://game/levels/level_one/level_one.tscn" id="6_i6atj"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_66ui6")
+
+[node name="Globals" parent="." instance=ExtResource("2_kr2hi")]
+
+[node name="PlayerUI" parent="." instance=ExtResource("3_6smkc")]
+
+[node name="LevelOne" parent="." instance=ExtResource("6_i6atj")]
+
+[node name="Camera2D" parent="." instance=ExtResource("4_r3kam")]
+
+[connection signal="body_entered" from="Camera2D/LevelLostArea" to="." method="_on_level_lost_area_body_entered"]
+
+[editable path="PlayerUI"]
+[editable path="Camera2D"]

@@ -37,7 +37,6 @@ text = "GAME OVER
 "
 
 [node name="FinalScoreText" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
 layout_mode = 2
 text = "SCORE: "
 

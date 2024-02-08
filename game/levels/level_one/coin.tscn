@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqrnig8njtmso"]
+
+[ext_resource type="Script" path="res://game/levels/level_one/coin.gd" id="1_t7jqr"]
+[ext_resource type="Texture2D" uid="uid://crl1sf5vxwut" path="res://assets/ItemPickup.png" id="1_wush5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pnkou"]
+size = Vector2(20.625, 20.625)
+
+[node name="Coin" type="Node2D"]
+script = ExtResource("1_t7jqr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("1_wush5")
+
+[node name="PickupArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("RectangleShape2D_pnkou")
+
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
