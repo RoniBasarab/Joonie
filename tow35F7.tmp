@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://lcagwnm4x1bk"]
+
+[ext_resource type="Script" path="res://WallGenerator.gd" id="1_mwu57"]
+
+[node name="TowerGenerator" type="Node"]
+
+[node name="WallGenerator" type="Node" parent="."]
+script = ExtResource("1_mwu57")
+
+[node name="PlatformsGenerator" type="Node" parent="."]
+
+[node name="GeneratorTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+
+[connection signal="timeout" from="GeneratorTimer" to="WallGenerator" method="_on_generator_timer_timeout"]

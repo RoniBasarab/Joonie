@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwvgac0khqhpa"]
+
+[ext_resource type="Script" path="res://game/player.gd" id="1_1q1rn"]
+[ext_resource type="Texture2D" uid="uid://ct7uossm23il1" path="res://game/icon.svg" id="1_whhnh"]
+[ext_resource type="PackedScene" uid="uid://cly4vfq65mhqe" path="res://gravity.tscn" id="3_pfmi6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3j1p"]
+size = Vector2(32, 32)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_1q1rn")
+SPEED = null
+ACCELERATION = null
+FRICTION = null
+JUMP_HEIGHT = null
+
+[node name="Gravity" parent="." node_paths=PackedStringArray("body") instance=ExtResource("3_pfmi6")]
+body = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_whhnh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_b3j1p")
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.4
